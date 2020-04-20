@@ -4,14 +4,6 @@ import math
 import env
 
 class Drawer():
-    # position contem o quadrante que vamos marcar
-    def draw_x(self, position):
-        pass
-
-    #position contem o quadrante que vamos marcar
-    def draw_circle(self, position):
-        pass
-
     def draw_grid(self):
         # GL_LINES pega de dois em dois
         glBegin(GL_LINES)
@@ -56,4 +48,8 @@ class Drawer():
 
         glEnd()
         glFlush()
+
+    # position contem o quadrante que vamos marcar
+    def draw_x(self, position):
         pass
+

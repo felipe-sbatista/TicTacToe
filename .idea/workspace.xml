@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9005f77b-9304-400a-82da-c6d622bbbb76" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/TicTacToe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TicTacToe.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/colors.py" beforeDir="false" afterPath="$PROJECT_DIR$/colors.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drawer.py" beforeDir="false" afterPath="$PROJECT_DIR$/drawer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_window.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,14 +95,30 @@
       <workItem from="1587403513033" duration="3476000" />
       <workItem from="1587408533264" duration="29000" />
       <workItem from="1587408564867" duration="90000" />
-      <workItem from="1587408680925" duration="6711000" />
+      <workItem from="1587408680925" duration="6957000" />
     </task>
+    <task id="LOCAL-00001" summary="Add grid and circle">
+      <created>1587423062169</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587423062169</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add grid and circle" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add grid and circle" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="303" y="23" width="833" height="794" key="CommitChangelistDialog2" timestamp="1587423061895">
+      <screen x="0" y="23" width="1440" height="794" />
+    </state>
+    <state x="303" y="23" width="833" height="794" key="CommitChangelistDialog2/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587423061895" />
     <state x="585" y="320" key="Github.ShareDialog" timestamp="1587408747000">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
@@ -164,9 +172,10 @@
     </state>
     <state x="235" y="95" key="SettingsEditor/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587415599635" />
     <state x="235" y="95" key="SettingsEditor/0.23.1440.794@0.23.1440.794" timestamp="1587408548320" />
-    <state x="320" y="160" key="Vcs.Push.Dialog.v2" timestamp="1587408344320">
+    <state x="320" y="160" key="Vcs.Push.Dialog.v2" timestamp="1587423064912">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state x="320" y="160" key="Vcs.Push.Dialog.v2/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587423064912" />
     <state x="320" y="160" key="Vcs.Push.Dialog.v2/0.23.1440.794@0.23.1440.794" timestamp="1587408344320" />
     <state x="397" y="252" key="com.intellij.ide.util.TipDialog" timestamp="1587408680907">
       <screen x="0" y="23" width="1440" height="794" />
