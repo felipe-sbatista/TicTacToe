@@ -1,27 +1,59 @@
 import numpy
 from OpenGL.GL import *
-import OpenGL.GL.shaders
+import math
+import env
 
 class Drawer():
+    # position contem o quadrante que vamos marcar
+    def draw_x(self, position):
+        pass
+
+    #position contem o quadrante que vamos marcar
+    def draw_circle(self, position):
+        pass
+
     def draw_grid(self):
-        # glClear(GL_COLOR_BUFFER_BIT)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE)
-        glColor3f(1.0, 0.0, 0.0)
-        ysize = 0
-        for i in range(3):
-            xsize = 0
-            for j in range(3):
-                glBegin(GL_POLYGON)
-                glVertex3f(-50.0 + xsize, -50.0 + ysize, 0.0)
-                glVertex3f(-40.0 + xsize, -50.0 + ysize, 0.0)
-                glVertex3f(-40.0 + xsize, -40.0 + ysize, 0.0)
-                glVertex3f(-50.0 + xsize, -40.0 + ysize, 0.0)
-                glEnd()
-                xsize += 3.0
+        # GL_LINES pega de dois em dois
+        glBegin(GL_LINES)
 
-            ysize += 3.0
+        # Vertical
 
+        # Primeira coluna
+        glVertex2f(.33, 1)
+        glVertex2f(.33, -1)
+
+        # Segunda coluna
+        glVertex2f(-.33, 1)
+        glVertex2f(-.33, -1)
+
+        # Horizontal
+
+        # Primeira linha
+        glVertex2f(1, .33)
+        glVertex2f(-1, .33)
+
+        # Segunda linha
+        glVertex2f(1, -.33)
+        glVertex2f(-1, -.33)
+
+        glEnd()
         glFlush()
 
-    def draw_rect(self):
+    def draw_circle(self, radius):
+        # LINE LOOP pega linhas interligadas, no caso nosso circulo
+        glLineWidth(6)
+        glBegin(GL_LINE_LOOP)
+
+        deg = 3.1415/180
+        radius = -.2
+        for i in range(360):
+            rad = deg*i
+            glVertex2f(math.cos(rad)*radius,math.sin(rad)*radius)
+
+        #aqui da ruim
+        glMatrixMode(GL_MODELVIEW)
+        glTranslatef(2, 0, 0)
+
+        glEnd()
+        glFlush()
         pass

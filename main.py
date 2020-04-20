@@ -6,8 +6,12 @@ from game_window import GameWindow
 
 if __name__ == "__main__":
     app = QApplication([])
+    palette = app.palette()
+    color = QColor()
+    palette.setColor(QPalette.Background, color.red())
+    app.setPalette(palette)
     opengl_widget = QOpenGLWidget()
-    opengl_widget.setFocusPolicy(Qt.StrongFocus)
+    # opengl_widget.setFocusPolicy(Qt.StrongFocus)
     game_widget = Game(opengl_widget)
     main_window = GameWindow(game_widget)
     exit(app.exec_())

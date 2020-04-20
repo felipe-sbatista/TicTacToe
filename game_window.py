@@ -1,5 +1,6 @@
 from PySide2.QtWidgets import QWidget, QVBoxLayout
 
+import colors
 import env
 
 
@@ -8,13 +9,8 @@ class GameWindow(QWidget):
         super(GameWindow, self).__init__()
 
         self.game_widget = game_widget
-
-
-        hor_border: int = int(20)
-        ver_border: int = int(40)
-
-        self.setFixedSize(env.VIEW_WIDTH + hor_border, env.VIEW_HEIGHT + ver_border)
-        self.setStyleSheet('background-color: #222222')
+        self.setFixedSize(env.VIEW_WIDTH + 40, env.VIEW_HEIGHT + 20)
+        self.setStyleSheet(colors.BACKGROUND_COLOR)
         self.autoFillBackground()
         self.initUI()
 

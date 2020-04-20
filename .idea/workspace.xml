@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9005f77b-9304-400a-82da-c6d622bbbb76" name="Default Changelist" comment="" />
+    <list default="true" id="9005f77b-9304-400a-82da-c6d622bbbb76" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TicTacToe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TicTacToe.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/colors.py" beforeDir="false" afterPath="$PROJECT_DIR$/colors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drawer.py" beforeDir="false" afterPath="$PROJECT_DIR$/drawer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/game_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,8 +43,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -92,6 +103,7 @@
       <workItem from="1587403513033" duration="3476000" />
       <workItem from="1587408533264" duration="29000" />
       <workItem from="1587408564867" duration="90000" />
+      <workItem from="1587408680925" duration="6711000" />
     </task>
     <servers />
   </component>
@@ -99,58 +111,71 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="320" key="Github.ShareDialog" timestamp="1587408613384">
+    <state x="585" y="320" key="Github.ShareDialog" timestamp="1587408747000">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state x="585" y="320" key="Github.ShareDialog/0.23.1440.794@0.23.1440.794" timestamp="1587408613384" />
-    <state x="482" y="133" key="Github.UntrackedFilesDialog" timestamp="1587408250255">
+    <state x="585" y="320" key="Github.ShareDialog/0.23.1440.794@0.23.1440.794" timestamp="1587408747000" />
+    <state x="482" y="133" key="Github.UntrackedFilesDialog" timestamp="1587408756587">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state x="482" y="133" key="Github.UntrackedFilesDialog/0.23.1440.794@0.23.1440.794" timestamp="1587408250255" />
-    <state width="1398" height="203" key="GridCell.Tab.0.bottom" timestamp="1587408480833">
+    <state x="482" y="133" key="Github.UntrackedFilesDialog/0.23.1440.794@0.23.1440.794" timestamp="1587408756587" />
+    <state width="1398" height="203" key="GridCell.Tab.0.bottom" timestamp="1587423024330">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587423024330" />
     <state width="1398" height="203" key="GridCell.Tab.0.bottom/0.23.1440.794@0.23.1440.794" timestamp="1587408480833" />
-    <state width="1398" height="203" key="GridCell.Tab.0.center" timestamp="1587408480832">
+    <state width="1398" height="203" key="GridCell.Tab.0.center" timestamp="1587423024329">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587423024329" />
     <state width="1398" height="203" key="GridCell.Tab.0.center/0.23.1440.794@0.23.1440.794" timestamp="1587408480832" />
-    <state width="1398" height="203" key="GridCell.Tab.0.left" timestamp="1587408480832">
+    <state width="1398" height="203" key="GridCell.Tab.0.left" timestamp="1587423024329">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587423024329" />
     <state width="1398" height="203" key="GridCell.Tab.0.left/0.23.1440.794@0.23.1440.794" timestamp="1587408480832" />
-    <state width="1398" height="203" key="GridCell.Tab.0.right" timestamp="1587408480833">
+    <state width="1398" height="203" key="GridCell.Tab.0.right" timestamp="1587423024329">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587423024329" />
     <state width="1398" height="203" key="GridCell.Tab.0.right/0.23.1440.794@0.23.1440.794" timestamp="1587408480833" />
-    <state width="1398" height="221" key="GridCell.Tab.1.bottom" timestamp="1587408480825">
+    <state width="1398" height="221" key="GridCell.Tab.1.bottom" timestamp="1587416503779">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state width="1398" height="221" key="GridCell.Tab.1.bottom/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587416503779" />
     <state width="1398" height="221" key="GridCell.Tab.1.bottom/0.23.1440.794@0.23.1440.794" timestamp="1587408480825" />
-    <state width="1398" height="221" key="GridCell.Tab.1.center" timestamp="1587408480825">
+    <state width="1398" height="221" key="GridCell.Tab.1.center" timestamp="1587416503778">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state width="1398" height="221" key="GridCell.Tab.1.center/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587416503778" />
     <state width="1398" height="221" key="GridCell.Tab.1.center/0.23.1440.794@0.23.1440.794" timestamp="1587408480825" />
-    <state width="1398" height="221" key="GridCell.Tab.1.left" timestamp="1587408480825">
+    <state width="1398" height="221" key="GridCell.Tab.1.left" timestamp="1587416503777">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state width="1398" height="221" key="GridCell.Tab.1.left/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587416503777" />
     <state width="1398" height="221" key="GridCell.Tab.1.left/0.23.1440.794@0.23.1440.794" timestamp="1587408480825" />
-    <state width="1398" height="221" key="GridCell.Tab.1.right" timestamp="1587408480825">
+    <state width="1398" height="221" key="GridCell.Tab.1.right" timestamp="1587416503778">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state width="1398" height="221" key="GridCell.Tab.1.right/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587416503778" />
     <state width="1398" height="221" key="GridCell.Tab.1.right/0.23.1440.794@0.23.1440.794" timestamp="1587408480825" />
-    <state x="235" y="95" key="SettingsEditor" timestamp="1587408548320">
+    <state x="235" y="95" key="SettingsEditor" timestamp="1587415599635">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
+    <state x="235" y="95" key="SettingsEditor/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587415599635" />
     <state x="235" y="95" key="SettingsEditor/0.23.1440.794@0.23.1440.794" timestamp="1587408548320" />
     <state x="320" y="160" key="Vcs.Push.Dialog.v2" timestamp="1587408344320">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
     <state x="320" y="160" key="Vcs.Push.Dialog.v2/0.23.1440.794@0.23.1440.794" timestamp="1587408344320" />
-    <state x="397" y="252" key="com.intellij.ide.util.TipDialog" timestamp="1587408536863">
+    <state x="397" y="252" key="com.intellij.ide.util.TipDialog" timestamp="1587408680907">
       <screen x="0" y="23" width="1440" height="794" />
     </state>
-    <state x="397" y="252" key="com.intellij.ide.util.TipDialog/0.23.1440.794@0.23.1440.794" timestamp="1587408536863" />
+    <state x="397" y="252" key="com.intellij.ide.util.TipDialog/0.23.1440.794@0.23.1440.794" timestamp="1587408680907" />
+    <state x="378" y="63" width="683" height="714" key="find.popup" timestamp="1587418364256">
+      <screen x="0" y="23" width="1440" height="794" />
+    </state>
+    <state x="378" y="63" width="683" height="714" key="find.popup/0.23.1440.794/0.-745.1366.745@0.23.1440.794" timestamp="1587418364256" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -164,6 +189,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/TicTacToe$main.coverage" NAME="main Coverage Results" MODIFIED="1587408145448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/TicTacToe$main.coverage" NAME="main Coverage Results" MODIFIED="1587423024321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

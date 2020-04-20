@@ -3,7 +3,7 @@ from PySide2.QtCore import *
 from PySide2.QtGui import *
 from OpenGL.GL import *
 import env
-import drawer
+from drawer import Drawer
 
 
 class Game(QOpenGLWidget):
@@ -15,15 +15,10 @@ class Game(QOpenGLWidget):
     def paintGL(self):
 
         glClear(GL_COLOR_BUFFER_BIT)
-        glClearColor(0.59, 0.67, 0.60, 1.0)
+        glClearColor(1, 0.67, 0.30, 1.0)
         glPointSize(10)
 
-        glBegin(GL_POINTS)
+        drawer = Drawer()
+        drawer.draw_grid()
+        drawer.draw_circle(0)
 
-        glColor3f(0.9, 0.2, 0.15) # apples
-        # draw_apples()
-
-        # glColor3f(0.0, 0.0, 0.0) # snake
-        # draw_snake()
-
-        glEnd()
