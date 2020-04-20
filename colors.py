@@ -1,0 +1,3 @@
+RED = ''
+BLUE = ''
+BACKGROUND_COLOR = ''
