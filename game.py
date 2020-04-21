@@ -20,5 +20,5 @@ class Game(QOpenGLWidget):
 
         drawer = Drawer()
         drawer.draw_grid()
-        drawer.draw_circle(0)
+        drawer.draw_circle(1, 1)
 
