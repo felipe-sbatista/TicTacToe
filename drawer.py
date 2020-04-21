@@ -5,6 +5,7 @@ import env
 
 posSquare = 0.33
 posCircle = posSquare * 2
+posX = posSquare / 2
 
 tX = [-posCircle, 0, posCircle]
 tY = [posCircle, 0, -posCircle]
@@ -31,8 +32,8 @@ class Drawer():
         glVertex2f(-1, posSquare)
 
         # Segunda linha
-        glVertex2f(1, -.33)
-        glVertex2f(-1, -.33)
+        glVertex2f(1, -posSquare)
+        glVertex2f(-1, -posSquare)
 
         glEnd()
         glFlush()
@@ -42,7 +43,7 @@ class Drawer():
         glPushMatrix()
 
         glMatrixMode(GL_MODELVIEW)
-        glTranslatef(tX[posX], tY[posY], 1)
+        glTranslatef(tX[posX], tY[posY], 0)
 
         # LINE LOOP pega linhas interligadas, no caso nosso circulo
         glBegin(GL_LINE_LOOP)
@@ -57,7 +58,29 @@ class Drawer():
         glFlush()
 
         glPopMatrix()
-    # position contem o quadrante que vamos marcar
-    def draw_x(self, position):
-        pass
 
+    def draw_x(self, posX, posY):
+        glLineWidth(6)
+        glPushMatrix()
+
+        glMatrixMode(GL_MODELVIEW)
+        glTranslatef(tX[posX], tY[posY], 0)
+
+        glBegin(GL_LINES)
+
+        glVertex2f(0, 0)
+        glVertex2f(posX, -posX)
+
+        glVertex2f(0, 0)
+        glVertex2f(-posX, -posX)
+
+        glVertex2f(0, 0)
+        glVertex2f(posX, posX)
+
+        glVertex2f(0, 0)
+        glVertex2f(-posX, posX)
+
+        glEnd()
+        glFlush()
+
+        glPopMatrix()

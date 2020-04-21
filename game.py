@@ -10,8 +10,8 @@ DRAWER = Drawer()
 
 
 class Positions():
-    x = 0;
-    y = 0;
+    x = 0
+    y = 0
 
 
 class Game(QOpenGLWidget):
@@ -19,6 +19,11 @@ class Game(QOpenGLWidget):
 
     def __init__(self, QOpenGLWidget):
         super().__init__()
+        '''
+        if turn equals to false, then cirlcle will be marked
+        and if its equals to true, then X will be marked 
+        '''
+        self.turn = False
 
     def initializeGL(self):
         self.setFixedSize(QSize(env.VIEW_WIDTH, env.VIEW_HEIGHT))
@@ -44,14 +49,28 @@ class Game(QOpenGLWidget):
 
         return coordinates
 
+    def checkPlayPosition(self, x, y):
+        for coordinate in self.selectedCoordinates:
+            if coordinate.x == x and coordinate.y == y:
+                print("this field has been already choosen")
+                return False
+        return True
+
     def mouseReleaseEvent(self, QMouseEvent):
         positions = self.calculateCoordinates(QMouseEvent.x(), QMouseEvent.y())
         print("x: " + str(positions.x) + " Y: " + str(positions.y))
-        self.selectedCoordinates.append(positions)
-        self.repaint()
+        if self.checkPlayPosition(positions.x, positions.y):
+            self.selectedCoordinates.append(positions)
+            self.repaint()
 
     def repaint(self):
         for coordinate in self.selectedCoordinates:
+            #fica piscando... por quanto, desenhando somente circulos
+            '''if self.turn:
+                DRAWER.draw_x(coordinate.x, coordinate.y)
+            else:
+                DRAWER.draw_circle(coordinate.x, coordinate.y)
+            self.turn = not self.turn'''
             DRAWER.draw_circle(coordinate.x, coordinate.y)
         self.update()
 
