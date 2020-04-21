@@ -5,6 +5,7 @@ import env
 
 posSquare = 0.33
 posCircle = posSquare * 2
+posX = posSquare / 2
 
 tX = [-posCircle, 0, posCircle]
 tY = [posCircle, 0, -posCircle]
@@ -58,6 +59,28 @@ class Drawer():
 
         glPopMatrix()
 
-    # position contem o quadrante que vamos marcar
-    def draw_x(self, position):
-        pass
+    def draw_x(self, posX, posY):
+        glLineWidth(6)
+        glPushMatrix()
+
+        glMatrixMode(GL_MODELVIEW)
+        glTranslatef(tX[posX], tY[posY], 0)
+
+        glBegin(GL_LINES)
+
+        glVertex2f(0, 0)
+        glVertex2f(posX, -posX)
+
+        glVertex2f(0, 0)
+        glVertex2f(-posX, -posX)
+
+        glVertex2f(0, 0)
+        glVertex2f(posX, posX)
+
+        glVertex2f(0, 0)
+        glVertex2f(-posX, posX)
+
+        glEnd()
+        glFlush()
+
+        glPopMatrix()
