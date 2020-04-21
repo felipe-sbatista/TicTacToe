@@ -14,5 +14,6 @@ if __name__ == "__main__":
     # opengl_widget.setFocusPolicy(Qt.StrongFocus)
     game_widget = Game(opengl_widget)
     main_window = GameWindow(game_widget)
+
     exit(app.exec_())
 

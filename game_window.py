@@ -19,3 +19,4 @@ class GameWindow(QWidget):
         layout.addWidget(self.game_widget)
         self.setLayout(layout)
         self.show()
+
