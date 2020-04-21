@@ -1,11 +1,9 @@
-import numpy
 from OpenGL.GL import *
 import math
-import env
 
 posSquare = 0.33
 posCircle = posSquare * 2
-posX = posSquare / 2
+POSX = posSquare / 2
 
 tX = [-posCircle, 0, posCircle]
 tY = [posCircle, 0, -posCircle]
@@ -69,16 +67,16 @@ class Drawer():
         glBegin(GL_LINES)
 
         glVertex2f(0, 0)
-        glVertex2f(posX, -posX)
+        glVertex2f(POSX, -POSX)
 
         glVertex2f(0, 0)
-        glVertex2f(-posX, -posX)
+        glVertex2f(-POSX, -POSX)
 
         glVertex2f(0, 0)
-        glVertex2f(posX, posX)
+        glVertex2f(POSX, POSX)
 
         glVertex2f(0, 0)
-        glVertex2f(-posX, posX)
+        glVertex2f(-POSX, POSX)
 
         glEnd()
         glFlush()
