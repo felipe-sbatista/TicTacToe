@@ -13,9 +13,9 @@ class Positions():
     x = 0
     y = 0
 
-
 class Game(QOpenGLWidget):
     selectedCoordinates: List[Positions] = []
+    SCREEN = 1
 
     def __init__(self, QOpenGLWidget):
         super().__init__()
@@ -49,6 +49,12 @@ class Game(QOpenGLWidget):
 
         return coordinates
 
+    def calculateCoordinatesHome(self, x, y):
+        print(x, y, 215 <= x < 426, 204 <= y < 280)
+        if 215 <= x < 426 and 204 <= y < 280:
+            return 2
+        return 1
+
     def checkPlayPosition(self, x, y):
         for coordinate in self.selectedCoordinates:
             if coordinate.x == x and coordinate.y == y:
@@ -57,28 +63,36 @@ class Game(QOpenGLWidget):
         return True
 
     def mouseReleaseEvent(self, QMouseEvent):
-        positions = self.calculateCoordinates(QMouseEvent.x(), QMouseEvent.y())
-        print("x: " + str(positions.x) + " Y: " + str(positions.y))
-        if self.checkPlayPosition(positions.x, positions.y):
-            self.selectedCoordinates.append(positions)
-            self.repaint()
+        if self.SCREEN == 1:
+            self.SCREEN = self.calculateCoordinatesHome(QMouseEvent.x(), QMouseEvent.y())
+        elif self.SCREEN == 2:
+            positions = self.calculateCoordinates(QMouseEvent.x(), QMouseEvent.y())
+            print("x: " + str(positions.x) + " Y: " + str(positions.y))
+            if self.checkPlayPosition(positions.x, positions.y):
+                self.selectedCoordinates.append(positions)
+                self.repaint()
 
     def repaint(self):
-        for coordinate in self.selectedCoordinates:
-            #fica piscando... por quanto, desenhando somente circulos
-            '''if self.turn:
-                DRAWER.draw_x(coordinate.x, coordinate.y)
-            else:
+        if self.SCREEN == 1:
+            DRAWER.draw_home()
+        elif self.SCREEN == 2:
+            DRAWER.draw_grid()
+            for coordinate in self.selectedCoordinates:
+                #fica piscando... por quanto, desenhando somente circulos
+                '''if self.turn:
+                    DRAWER.draw_x(coordinate.x, coordinate.y)
+                else:
+                    DRAWER.draw_circle(coordinate.x, coordinate.y)
+                self.turn = not self.turn'''
                 DRAWER.draw_circle(coordinate.x, coordinate.y)
-            self.turn = not self.turn'''
-            DRAWER.draw_circle(coordinate.x, coordinate.y)
         self.update()
 
     def paintGL(self):
 
         glClear(GL_COLOR_BUFFER_BIT)
-        glClearColor(1, 0.67, 0.30, 1.0)
+        glClearColor(5/255, 102/255, 141/255, 1.0)
+        # glClearColor(2/255, 195/255, 154/255, 1.0)
         glPointSize(10)
-        DRAWER.draw_grid()
+
         self.repaint()
 
