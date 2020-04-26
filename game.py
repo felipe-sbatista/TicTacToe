@@ -12,6 +12,7 @@ DRAWER = Drawer()
 class Positions():
     x = 0
     y = 0
+    turn = 0
 
 class Game(QOpenGLWidget):
     selectedCoordinates: List[Positions] = []
@@ -60,6 +61,7 @@ class Game(QOpenGLWidget):
             if coordinate.x == x and coordinate.y == y:
                 print("this field has been already choosen")
                 return False
+        # self.selectedCoordinates: List[Positions] = []
         return True
 
     def mouseReleaseEvent(self, QMouseEvent):
@@ -78,13 +80,21 @@ class Game(QOpenGLWidget):
         elif self.SCREEN == 2:
             DRAWER.draw_grid()
             for coordinate in self.selectedCoordinates:
-                #fica piscando... por quanto, desenhando somente circulos
-                '''if self.turn:
+                if coordinate.turn == 0:
+                    if self.turn:
+                        DRAWER.draw_x(coordinate.x, coordinate.y)
+                        coordinate.turn = 1
+                    else:
+                        DRAWER.draw_circle(coordinate.x, coordinate.y)
+                        coordinate.turn = 2
+                    self.turn = not self.turn
+                elif coordinate.turn == 1:
                     DRAWER.draw_x(coordinate.x, coordinate.y)
-                else:
+                    coordinate.turn = 1
+                elif coordinate.turn == 2:
                     DRAWER.draw_circle(coordinate.x, coordinate.y)
-                self.turn = not self.turn'''
-                DRAWER.draw_circle(coordinate.x, coordinate.y)
+                    coordinate.turn = 2
+                # DRAWER.draw_circle(coordinate.x, coordinate.y)
         self.update()
 
     def paintGL(self):
