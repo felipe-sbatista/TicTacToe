@@ -1,4 +1,4 @@
-from PySide2.QtWidgets import QHBoxLayout, QWidget, QApplication, QVBoxLayout, QPushButton, QLabel, QMainWindow, \
+from PySide2.QtWidgets import QLineEdit, QWidget, QApplication, QVBoxLayout, QPushButton, QLabel, QMainWindow, \
     QOpenGLWidget, QMessageBox
 from PySide2.QtCore import *
 from PySide2.QtGui import *
@@ -27,6 +27,7 @@ class Game(QOpenGLWidget):
         and if its equals to true, then X will be marked 
         '''
         self.turn = False
+        self.playBtn = QLabel("Jogar", self)
         self.matrix_game = [[0 for _ in range(3)] for _ in range(3)]
         self.players = ['X', 'O']
 
@@ -57,6 +58,8 @@ class Game(QOpenGLWidget):
     def calculateCoordinatesHome(self, x, y):
         print(x, y, 215 <= x < 426, 204 <= y < 280)
         if 215 <= x < 426 and 204 <= y < 280:
+            self.playBtn.clear()
+            self.playBtn.hide()
             return 2
         return 1
 
@@ -89,7 +92,7 @@ class Game(QOpenGLWidget):
 
     def repaint(self):
         if self.SCREEN == 1:
-            DRAWER.draw_home()
+            self.drawHomeScreen()
         elif self.SCREEN == 2:
             DRAWER.draw_grid()
             for coordinate in self.selectedCoordinates:
@@ -110,6 +113,11 @@ class Game(QOpenGLWidget):
                 # DRAWER.draw_circle(coordinate.x, coordinate.y)
 
         self.update()
+
+    def drawHomeScreen(self):
+        self.playBtn.setGeometry(282, 215, 80, 50)
+        self.playBtn.setStyleSheet("QLabel { background-color : rgb(2, 195, 154);  color: white; font: 25pt; }")
+        DRAWER.draw_home()
 
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT)
