@@ -6,6 +6,7 @@ from OpenGL.GL import *
 import env
 from drawer import Drawer
 from typing import List
+
 DRAWER = Drawer()
 
 
@@ -13,6 +14,7 @@ class Positions():
     x = 0
     y = 0
     turn = 0
+
 
 class Game(QOpenGLWidget):
     selectedCoordinates: List[Positions] = []
@@ -25,6 +27,8 @@ class Game(QOpenGLWidget):
         and if its equals to true, then X will be marked 
         '''
         self.turn = False
+        self.matrix_game = [[0 for _ in range(3)] for _ in range(3)]
+        self.players = ['X', 'O']
 
     def initializeGL(self):
         self.setFixedSize(QSize(env.VIEW_WIDTH, env.VIEW_HEIGHT))
@@ -73,6 +77,15 @@ class Game(QOpenGLWidget):
             if self.checkPlayPosition(positions.x, positions.y):
                 self.selectedCoordinates.append(positions)
                 self.repaint()
+                if self.turn:
+                    player = 'O'
+                else:
+                    player = 'X'
+
+                self.matrix_game[positions.x][positions.y] = player
+
+                if self.hasFinished(positions.x, positions.y):
+                    print(player + ' Won!')
 
     def repaint(self):
         if self.SCREEN == 1:
@@ -95,14 +108,35 @@ class Game(QOpenGLWidget):
                     DRAWER.draw_circle(coordinate.x, coordinate.y)
                     coordinate.turn = 2
                 # DRAWER.draw_circle(coordinate.x, coordinate.y)
+
         self.update()
 
     def paintGL(self):
-
         glClear(GL_COLOR_BUFFER_BIT)
-        glClearColor(5/255, 102/255, 141/255, 1.0)
+        glClearColor(5 / 255, 102 / 255, 141 / 255, 1.0)
         # glClearColor(2/255, 195/255, 154/255, 1.0)
         glPointSize(10)
-
         self.repaint()
 
+    def hasFinished(self, x, y):
+        # check if is vertical line
+        if (self.matrix_game[0][y] in self.players) and self.matrix_game[0][y] == self.matrix_game[1][y] == \
+                self.matrix_game[2][y]:
+            return True
+
+        # check if is horizontal line
+        if (self.matrix_game[x][0] in self.players) and self.matrix_game[x][0] == self.matrix_game[x][1] == \
+                self.matrix_game[x][2]:
+            return True
+
+        # check if is in first diagonal
+        if (self.matrix_game[0][0] in self.players) and self.matrix_game[0][0] == self.matrix_game[1][1] == \
+                self.matrix_game[2][2]:
+            return True
+
+        # check if is in second diagonal
+        if (self.matrix_game[0][2] in self.players) and self.matrix_game[0][2] == self.matrix_game[1][1] == \
+                self.matrix_game[2][0]:
+            return True
+
+        return False
