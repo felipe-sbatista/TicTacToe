@@ -27,13 +27,29 @@ class Game(QOpenGLWidget):
         and if its equals to true, then X will be marked 
         '''
         self.turn = False
-        self.playBtn = QLabel("Jogar", self)
+        self.initializeHomeScreen()
         self.matrix_game = [[0 for _ in range(3)] for _ in range(3)]
         self.players = ['X', 'O']
 
     def initializeGL(self):
         self.setFixedSize(QSize(env.VIEW_WIDTH, env.VIEW_HEIGHT))
         glViewport(0, 0, env.VIEW_WIDTH, env.VIEW_HEIGHT)
+
+    def initializeHomeScreen(self):
+        self.gameTitle = QLabel("Tic Tac Toe", self)
+        self.playButtonLabel = QLabel("Jogar", self)
+        self.gameTitle.setStyleSheet("QLabel { background-color : rgb(5, 102, 141);  color: white; font: 50pt; }")
+        self.gameTitle.setGeometry(150, 70, 410, 120)
+        self.playButtonLabel.setGeometry(282, 215, 80, 50)
+        self.playButtonLabel.setStyleSheet("QLabel { background-color : rgb(2, 195, 154);  color: white; font: 25pt; }")
+
+    def initializeEndScreen(self, victoryMsg):
+        self.gameTitle = QLabel(victoryMsg, self)
+        self.gameTitle.setStyleSheet("QLabel { background-color : rgb(5, 102, 141);  color: white; font: 30pt; }")
+        self.gameTitle.setGeometry(120, 70, 410, 120)
+        self.playButtonLabel = QLabel("Jogar Novamente", self)
+        self.playButtonLabel.setGeometry(242, 215, 180, 50)
+        self.playButtonLabel.setStyleSheet("QLabel { background-color : rgb(2, 195, 154);  color: white; font: 15pt; }")
 
     def calculateCoordinates(self, x, y):
         coordinates = Positions()
@@ -55,20 +71,31 @@ class Game(QOpenGLWidget):
 
         return coordinates
 
+    def switchButtonsState(self, activate):
+        if activate:
+            self.playButtonLabel.show()
+            self.gameTitle.show()
+        else:
+            self.playButtonLabel.hide()
+            self.gameTitle.hide()
+
     def calculateCoordinatesHome(self, x, y):
         print(x, y, 215 <= x < 426, 204 <= y < 280)
         if 215 <= x < 426 and 204 <= y < 280:
-            self.playBtn.clear()
-            self.playBtn.hide()
+            self.switchButtonsState(False)
             return 2
         return 1
+
+    def clearBoard(self):
+        self.selectedCoordinates: List[Positions] = []
+        self.matrix_game = [[0 for _ in range(3)] for _ in range(3)]
 
     def checkPlayPosition(self, x, y):
         for coordinate in self.selectedCoordinates:
             if coordinate.x == x and coordinate.y == y:
                 print("this field has been already choosen")
                 return False
-        # self.selectedCoordinates: List[Positions] = []
+
         return True
 
     def mouseReleaseEvent(self, QMouseEvent):
@@ -88,10 +115,15 @@ class Game(QOpenGLWidget):
                 self.matrix_game[positions.x][positions.y] = player
 
                 if self.hasFinished(positions.x, positions.y):
+                    self.initializeEndScreen("O Jogador '" + player + "' Ganhou!")
                     print(player + ' Won!')
+                    self.clearBoard()
+                    self.SCREEN = 1
+                    self.repaint()
 
     def repaint(self):
         if self.SCREEN == 1:
+            self.switchButtonsState(True)
             self.drawHomeScreen()
         elif self.SCREEN == 2:
             DRAWER.draw_grid()
@@ -115,8 +147,6 @@ class Game(QOpenGLWidget):
         self.update()
 
     def drawHomeScreen(self):
-        self.playBtn.setGeometry(282, 215, 80, 50)
-        self.playBtn.setStyleSheet("QLabel { background-color : rgb(2, 195, 154);  color: white; font: 25pt; }")
         DRAWER.draw_home()
 
     def paintGL(self):
