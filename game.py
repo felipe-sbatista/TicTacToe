@@ -43,10 +43,10 @@ class Game(QOpenGLWidget):
         self.playButtonLabel.setGeometry(282, 215, 80, 50)
         self.playButtonLabel.setStyleSheet("QLabel { background-color : rgb(2, 195, 154);  color: white; font: 25pt; }")
 
-    def initializeEndScreen(self, victoryMsg):
+    def initializeEndScreen(self, victoryMsg, coordinateX):
         self.gameTitle = QLabel(victoryMsg, self)
         self.gameTitle.setStyleSheet("QLabel { background-color : rgb(5, 102, 141);  color: white; font: 30pt; }")
-        self.gameTitle.setGeometry(120, 70, 410, 120)
+        self.gameTitle.setGeometry(coordinateX, 70, 410, 120)
         self.playButtonLabel = QLabel("Jogar Novamente", self)
         self.playButtonLabel.setGeometry(242, 215, 180, 50)
         self.playButtonLabel.setStyleSheet("QLabel { background-color : rgb(2, 195, 154);  color: white; font: 15pt; }")
@@ -115,11 +115,23 @@ class Game(QOpenGLWidget):
                 self.matrix_game[positions.x][positions.y] = player
 
                 if self.hasFinished(positions.x, positions.y):
-                    self.initializeEndScreen("O Jogador '" + player + "' Ganhou!")
+                    self.initializeEndScreen("O Jogador '" + player + "' Ganhou!", 120)
                     print(player + ' Won!')
                     self.clearBoard()
                     self.SCREEN = 1
                     self.repaint()
+                else:
+                    draw = True
+                    for line in range(3):
+                        for column in range(3):
+                            if self.matrix_game[line][column] != 'X' and self.matrix_game[line][column] != 'O':
+                                draw = False
+                    if draw:
+                        self.initializeEndScreen("Deu velha", 230)
+                        print('Deu velha')
+                        self.clearBoard()
+                        self.SCREEN = 1
+                        self.repaint()
 
     def repaint(self):
         if self.SCREEN == 1:
