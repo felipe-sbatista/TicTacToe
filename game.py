@@ -1,3 +1,4 @@
+import PySide2
 from PySide2.QtWidgets import QLineEdit, QWidget, QApplication, QVBoxLayout, QPushButton, QLabel, QMainWindow, \
     QOpenGLWidget, QMessageBox
 from PySide2.QtCore import *
@@ -35,13 +36,25 @@ class Game(QOpenGLWidget):
         self.resize(env.VIEW_WIDTH, env.VIEW_HEIGHT)
         glViewport(0, 0, env.VIEW_WIDTH, env.VIEW_HEIGHT)
 
+    def resizeEvent(self, e: PySide2.QtGui.QResizeEvent):
+        super().resizeEvent(e)
+        if self.gameTitle is not None:
+            x = e.size().width() / 3
+            y = e.size().height() / 2
+            self.gameTitle.setGeometry(x, y, x, y)
+
+        if self.playButtonLabel is not None:
+            x = e.size().width() / 3
+            y = e.size().height() / 3
+            self.playButtonLabel.setGeometry(x, y, x, y)
+
     def initializeHomeScreen(self):
         self.gameTitle = QLabel("Tic Tac Toe", self)
         self.playButtonLabel = QLabel("Jogar", self)
-        self.gameTitle.setStyleSheet("QLabel { background-color : rgb(5, 102, 141);  color: white; font: 50pt; }")
+        self.gameTitle.setStyleSheet("QLabel { background-color : none; color: white; font: 40pt; }")
         self.gameTitle.setGeometry(150, 70, 410, 120)
         self.playButtonLabel.setGeometry(282, 215, 80, 50)
-        self.playButtonLabel.setStyleSheet("QLabel { background-color : rgb(2, 195, 154);  color: white; font: 25pt; }")
+        self.playButtonLabel.setStyleSheet("QLabel { background-color : none;  color: white; font: 25pt; }")
 
     def initializeEndScreen(self, victoryMsg, coordinateX):
         self.gameTitle = QLabel(victoryMsg, self)
@@ -143,7 +156,7 @@ class Game(QOpenGLWidget):
     def repaint(self):
         if self.SCREEN == 1:
             self.switchButtonsState(True)
-            self.drawHomeScreen()
+
         elif self.SCREEN == 2:
             DRAWER.draw_grid()
             for coordinate in self.selectedCoordinates:
@@ -161,12 +174,7 @@ class Game(QOpenGLWidget):
                 elif coordinate.turn == 2:
                     DRAWER.draw_circle(coordinate.x, coordinate.y)
                     coordinate.turn = 2
-
-
         self.update()
-
-    def drawHomeScreen(self):
-        DRAWER.draw_home()
 
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT)
