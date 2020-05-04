@@ -11,7 +11,6 @@ if __name__ == "__main__":
     palette.setColor(QPalette.Background, color.red())
     app.setPalette(palette)
     opengl_widget = QOpenGLWidget()
-    # opengl_widget.setFocusPolicy(Qt.StrongFocus)
     game_widget = Game(opengl_widget)
     main_window = GameWindow(game_widget)
 

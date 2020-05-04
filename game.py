@@ -10,7 +10,7 @@ from typing import List
 DRAWER = Drawer()
 
 
-class Positions():
+class Positions:
     x = 0
     y = 0
     turn = 0
@@ -32,7 +32,7 @@ class Game(QOpenGLWidget):
         self.players = ['X', 'O']
 
     def initializeGL(self):
-        self.setFixedSize(QSize(env.VIEW_WIDTH, env.VIEW_HEIGHT))
+        self.resize(env.VIEW_WIDTH, env.VIEW_HEIGHT)
         glViewport(0, 0, env.VIEW_WIDTH, env.VIEW_HEIGHT)
 
     def initializeHomeScreen(self):
@@ -53,18 +53,25 @@ class Game(QOpenGLWidget):
 
     def calculateCoordinates(self, x, y):
         coordinates = Positions()
+        # get width and height in case of resizes
+        # divides by 3 due to 9x9 matrix of tic tac toe
+        w1 = self.geometry().width()/3
+        w2 = w1 * 2
+        h1 = self.geometry().height()/3
+        h2 = h1 * 2
+
         # identifying x index
-        if 0 <= x < 211:
+        if 0 <= x < w1:
             coordinates.x = 0
-        elif 218 <= x < 423:
+        elif w1 <= x < w2:
             coordinates.x = 1
         else:
             coordinates.x = 2
 
         # identifying y index
-        if 0 <= y < 157:
+        if 0 <= y < h1:
             coordinates.y = 0
-        elif 166 <= y < 316:
+        elif h1 <= y < h2:
             coordinates.y = 1
         else:
             coordinates.y = 2
@@ -93,7 +100,7 @@ class Game(QOpenGLWidget):
     def checkPlayPosition(self, x, y):
         for coordinate in self.selectedCoordinates:
             if coordinate.x == x and coordinate.y == y:
-                print("this field has been already choosen")
+                print("Esse campo já foi escolhido")
                 return False
 
         return True
@@ -154,7 +161,7 @@ class Game(QOpenGLWidget):
                 elif coordinate.turn == 2:
                     DRAWER.draw_circle(coordinate.x, coordinate.y)
                     coordinate.turn = 2
-                # DRAWER.draw_circle(coordinate.x, coordinate.y)
+
 
         self.update()
 
@@ -164,7 +171,6 @@ class Game(QOpenGLWidget):
     def paintGL(self):
         glClear(GL_COLOR_BUFFER_BIT)
         glClearColor(5 / 255, 102 / 255, 141 / 255, 1.0)
-        # glClearColor(2/255, 195/255, 154/255, 1.0)
         glPointSize(10)
         self.repaint()
 

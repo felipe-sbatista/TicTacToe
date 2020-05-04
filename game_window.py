@@ -9,7 +9,7 @@ class GameWindow(QWidget):
         super(GameWindow, self).__init__()
 
         self.game_widget = game_widget
-        self.setFixedSize(env.VIEW_WIDTH + 40, env.VIEW_HEIGHT + 20)
+        self.resize(env.VIEW_WIDTH, env.VIEW_HEIGHT)
         self.setStyleSheet(colors.BACKGROUND_COLOR)
         self.autoFillBackground()
         self.initUI()
