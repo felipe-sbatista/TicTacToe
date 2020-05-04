@@ -20,7 +20,8 @@ class Positions:
 class Game(QOpenGLWidget):
     selectedCoordinates: List[Positions] = []
     SCREEN = 1
-
+    gameTitle = None
+    playButtonLabel = None
     def __init__(self, QOpenGLWidget):
         super().__init__()
         '''
@@ -38,31 +39,31 @@ class Game(QOpenGLWidget):
 
     def resizeEvent(self, e: PySide2.QtGui.QResizeEvent):
         super().resizeEvent(e)
+        width = self.SCREEN == 1 and 220 or 400
         if self.gameTitle is not None:
             x = e.size().width() / 3
             y = e.size().height() / 2
-            self.gameTitle.setGeometry(x, y, x, y)
+            self.gameTitle.setGeometry(int(x), int(y)-100, width, 50)
 
         if self.playButtonLabel is not None:
             x = e.size().width() / 3
             y = e.size().height() / 3
-            self.playButtonLabel.setGeometry(x, y, x, y)
+            self.playButtonLabel.setGeometry(int(x), int(y)+50, width, 50)
 
     def initializeHomeScreen(self):
         self.gameTitle = QLabel("Tic Tac Toe", self)
         self.playButtonLabel = QLabel("Jogar", self)
-        self.gameTitle.setStyleSheet("QLabel { background-color : none; color: white; font: 40pt; }")
-        self.gameTitle.setGeometry(150, 70, 410, 120)
-        self.playButtonLabel.setGeometry(282, 215, 80, 50)
-        self.playButtonLabel.setStyleSheet("QLabel { background-color : none;  color: white; font: 25pt; }")
+        self.gameTitle.setStyleSheet(env.titleLabelProps)
+        self.playButtonLabel.setStyleSheet(env.btnLabelProps)
 
-    def initializeEndScreen(self, victoryMsg, coordinateX):
+    def initializeEndScreen(self, victoryMsg):
         self.gameTitle = QLabel(victoryMsg, self)
-        self.gameTitle.setStyleSheet("QLabel { background-color : rgb(5, 102, 141);  color: white; font: 30pt; }")
-        self.gameTitle.setGeometry(coordinateX, 70, 410, 120)
         self.playButtonLabel = QLabel("Jogar Novamente", self)
-        self.playButtonLabel.setGeometry(242, 215, 180, 50)
-        self.playButtonLabel.setStyleSheet("QLabel { background-color : rgb(2, 195, 154);  color: white; font: 15pt; }")
+        self.gameTitle.setStyleSheet(env.titleLabelProps)
+        self.playButtonLabel.setStyleSheet(env.btnLabelProps)
+        print(self.geometry().x(), self.geometry().y())
+        self.gameTitle.setGeometry(int(self.geometry().x()*9), int(self.geometry().y()*9) - 100, 420, 50)
+        self.playButtonLabel.setGeometry(int(self.geometry().x()*9), int(self.geometry().y()*10) + 50, 400, 50)
 
     def calculateCoordinates(self, x, y):
         coordinates = Positions()
@@ -101,7 +102,9 @@ class Game(QOpenGLWidget):
 
     def calculateCoordinatesHome(self, x, y):
         print(x, y, 215 <= x < 426, 204 <= y < 280)
-        if 215 <= x < 426 and 204 <= y < 280:
+        btnGeometry = self.playButtonLabel.geometry()
+        print(self.playButtonLabel.geometry().x(), self.playButtonLabel.geometry().width())
+        if btnGeometry.x() <= x < btnGeometry.x() + btnGeometry.width() and btnGeometry.y() <= y < btnGeometry.y() + btnGeometry.height():
             self.switchButtonsState(False)
             return 2
         return 1
@@ -135,7 +138,7 @@ class Game(QOpenGLWidget):
                 self.matrix_game[positions.x][positions.y] = player
 
                 if self.hasFinished(positions.x, positions.y):
-                    self.initializeEndScreen("O Jogador '" + player + "' Ganhou!", 120)
+                    self.initializeEndScreen("O Jogador '" + player + "' Ganhou!")
                     print(player + ' Won!')
                     self.clearBoard()
                     self.SCREEN = 1
@@ -147,7 +150,7 @@ class Game(QOpenGLWidget):
                             if self.matrix_game[line][column] != 'X' and self.matrix_game[line][column] != 'O':
                                 draw = False
                     if draw:
-                        self.initializeEndScreen("Deu velha", 230)
+                        self.initializeEndScreen("Deu velha")
                         print('Deu velha')
                         self.clearBoard()
                         self.SCREEN = 1
