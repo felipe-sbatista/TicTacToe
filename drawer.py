@@ -14,34 +14,25 @@ tY = [posCircle, 0, -posCircle]
 
 
 class Drawer():
+    xRot = 16.0
+    yRot = 16.0
+
     def draw_grid(self):
         # GL_LINES pega de dois em dois
         glLineWidth(6)
-        glBegin(GL_LINES)
-        glColor3f(1, 1, 1)
-
-        # Vertical
 
         # Primeira coluna
-        glVertex2f(posSquare, 1)
-        glVertex2f(posSquare, -1)
+        self.draw_line(0, -1, -0.35, 0, 0, 0.02, 2)
 
         # Segunda coluna
-        glVertex2f(-posSquare, 1)
-        glVertex2f(-posSquare, -1)
-
-        # Horizontal
+        self.draw_line(0, -1, 0.35, 0, 0, 0.02, 2)
 
         # Primeira linha
-        glVertex2f(1, posSquare)
-        glVertex2f(-1, posSquare)
+        self.draw_line(-1, 0, 0, -0.35, 0, 2, 0.02)
 
         # Segunda linha
-        glVertex2f(1, -posSquare)
-        glVertex2f(-1, -posSquare)
+        self.draw_line(-1, 0, 0, 0.35, 0, 2, 0.02)
 
-        glEnd()
-        glFlush()
 
     def draw_circle(self, posX, posY):
         glPushMatrix()
@@ -49,8 +40,11 @@ class Drawer():
         glMatrixMode(GL_MODELVIEW)
 
         glTranslated(tX[posX], tY[posY], 0)
+        glRotated(self.xRot / 16.0, 1.0, 0.0, 0.0)
+        glRotated(self.yRot / 16.0, 0.0, 1.0, 0.0)
 
         glBegin(GL_QUADS)
+        glColor3f(1, 0, 0)
 
         NumSectors = 200
         x1Const = 0.15
@@ -85,22 +79,36 @@ class Drawer():
         glMatrixMode(GL_MODELVIEW)
         glTranslatef(tX[posX], tY[posY], 0)
 
-        glBegin(GL_LINES)
+        glBegin(GL_QUADS)
 
-        glVertex2f(0, 0)
-        glVertex2f(POSX, -POSX)
+        x1 = 0.06
+        y1 = -0.14
+        x2 = 0.14
+        y2 = -0.06
 
-        glVertex2f(0, 0)
-        glVertex2f(-POSX, -POSX)
+        self.quad_x(x1, y1, x2, y2, y2, x2, y1, x1)
 
-        glVertex2f(0, 0)
-        glVertex2f(POSX, POSX)
-
-        glVertex2f(0, 0)
-        glVertex2f(-POSX, POSX)
+        self.extrude(x1, y1, x2, y2)
+        self.extrude(x2, y2, y2, x2)
+        self.extrude(y2, x2, y1, x1)
+        self.extrude(y1, x1, x1, y1)
 
         glEnd()
-        glFlush()
+
+        glMatrixMode(GL_MODELVIEW)
+
+        glRotated(3007 / 16.0, 0.0, 1.0, 0.0)
+
+        glBegin(GL_QUADS)
+
+        self.quad_x(x1, y1, x2, y2, y2, x2, y1, x1)
+
+        self.extrude(x1, y1, x2, y2)
+        self.extrude(x2, y2, y2, x2)
+        self.extrude(y2, x2, y1, x1)
+        self.extrude(y1, x1, x1, y1)
+
+        glEnd()
 
         glPopMatrix()
 
@@ -120,3 +128,53 @@ class Drawer():
         glVertex3d(x2, y2, +0.05)
         glVertex3d(x2, y2, -0.05)
         glVertex3d(x1, y1, -0.05)
+
+    def extrude(self, x1, y1, x2, y2):
+        glVertex3d(x1, y1, +0.05)
+        glVertex3d(x2, y2, +0.05)
+        glVertex3d(x2, y2, -0.05)
+        glVertex3d(x1, y1, -0.05)
+
+    def quad_x(self, x1, y1, x2, y2, x3, y3, x4, y4):
+        glVertex3d(x1, y1, -0.05)
+        glVertex3d(x2, y2, -0.05)
+        glVertex3d(x3, y3, -0.05)
+        glVertex3d(x4, y4, -0.05)
+
+        glVertex3d(x4, y4, +0.05)
+        glVertex3d(x3, y3, +0.05)
+        glVertex3d(x2, y2, +0.05)
+        glVertex3d(x1, y1, +0.05)
+
+    def quad(self, x1, y1, tx, ty):
+        glVertex3d(x1, y1, -0.05)
+        glVertex3d(x1, y1+ty, -0.05)
+        glVertex3d(x1+tx, y1+ty, -0.05)
+        glVertex3d(x1+tx, y1, -0.05)
+
+        glVertex3d(x1, y1, 0.05)
+        glVertex3d(x1, y1 + ty, 0.05)
+        glVertex3d(x1 + tx, y1 + ty, 0.05)
+        glVertex3d(x1 + tx, y1, 0.05)
+
+    def draw_line(self, x, y, tx, ty, tz, tamX, tamY):
+        glPushMatrix()
+
+        glMatrixMode(GL_MODELVIEW)
+
+        glTranslated(tx, ty, tz)
+        glBegin(GL_QUADS)
+        glColor3f(1, 1, 1)
+
+        self.quad(x, y, tamX, tamY)
+
+        self.extrude(x, y, -y, -x)
+        self.extrude(-y, -x, -x, -y)
+        self.extrude(-x, -y, y, x)
+        self.extrude(y, x, x, y)
+
+        glEnd()
+        glFlush()
+
+        glPopMatrix()
+
